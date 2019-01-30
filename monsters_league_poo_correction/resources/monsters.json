@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Infernaltree",
+        "age": "10",
+        "weight": "5",
+        "bio": "Hi! I'm Infernaltree.",
+        "filename": "infernaltree.png"
+    },
+    {
+        "name": "Toxinscream",
+        "age": "20",
+        "weight": "10",
+        "bio": "Hi! I'm Toxinscream.",
+        "filename": "toxinscream.png"
+    },
+    {
+        "name": "Acidpaw",
+        "age": "30",
+        "weight": "15",
+        "bio": "Hi! I'm Acidpaw.",
+        "filename": "acidpaw.png"
+    },
+    {
+        "name": "Barbling",
+        "age": "40",
+        "weight": "20",
+        "bio": "Hi! I'm Barbling.",
+        "filename": "barbling.png"
+    }
+]
