@@ -66,6 +66,44 @@ $monsters = getMonstersObjet();
                     <?php } ?>
                 </tbody>
             </table>
+            
+            <form method="post">
+                <legend>Add monster </legend>
+                <fieldset>
+                <label for="name" > Name<em>*</em></label> <input type="text" id="name" name="name">	
+		        <label for="strength"> Strength <em>*</em> <input type="int" id="strength" name="strength" >
+		        <label for="life"> Life <em>*</em> <input type="int" id="life" name="life" >
+                <label for="type"> Type <em>*</em> <input type="text" id="type" name="type">
+                <input type="submit" value="Add Monster">
+                </fieldset>
+            </form>
+            
+            <?php
+
+            if ((isset($_POST['name']) && !empty($_POST['name'])) 
+            && (isset($_POST['strength']) && !empty($_POST['strength'])) 
+            && (isset($_POST['life']) && !empty($_POST['life']))
+            && (isset($_POST['type']) && !empty($_POST['type']))) {
+
+                $dsn = 'mysql:host=localhost;dbname=monsters';
+                $username = 'root';
+                $password = 'newPass';
+                $dbh = new PDO($dsn, $username, $password);
+                $name = $_POST['name'];	
+                $strength = $_POST['strength'];
+                $life = $_POST['life'];
+                $type = $_POST['type'];
+                $query = "INSERT INTO monster ( name, strength, life, type)
+                VALUES( '".$name."', '".$strength."', '".$life."', '".$type."')";
+                $result = $dbh -> query($query);
+                $monster = $result -> fetchAll();
+                //echo ("done");
+                header('Location: index.php');
+            }
+            else {
+                //echo "fail";
+            }
+?>
 
             <div class="row border p-3">
                 <div class="form-group col-md-6 offset-md-3">

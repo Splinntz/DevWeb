@@ -15,32 +15,14 @@ function getMonstersObjet()
 
 function getMonsters()
 {
-    return [
-        [
-            'name' => 'Test',
-            'strength' => 30,
-            'life' => 300,
-            'type' => 'water'
-        ],
-        [
-            'name' => 'Wendigos',
-            'strength' => 100,
-            'life' => 450,
-            'type' => 'earth'
-        ],
-        [
-            'name' => 'Thunderbird',
-            'strength' => 400,
-            'life' => 500,
-            'type' => 'air'
-        ],
-        [
-            'name' => 'Sirrush',
-            'strength' => 250,
-            'life' => 1500,
-            'type' => 'fire'
-        ],
-    ];
+    $dsn = 'mysql:host=localhost;dbname=monsters';
+    $username = 'root';
+    $password = 'newPass';
+    $dbh = new PDO($dsn, $username, $password);
+    $query = "SELECT * FROM monster";
+    $result = $dbh -> query($query);
+    $monster = $result -> fetchAll();
+    return $monster;
 }
 
 /**
