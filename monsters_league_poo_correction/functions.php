@@ -25,6 +25,40 @@ function getMonsters()
     return $monster;
 }
 
+function addMonster($name, $strength, $life, $type)
+{
+    $dsn = 'mysql:host=localhost;dbname=monsters';
+    $username = 'root';
+    $password = 'newPass';
+    $dbh = new PDO($dsn, $username, $password);
+    //$name = $_POST['name'];	
+    //$strength = $_POST['strength'];
+    //$life = $_POST['life'];
+    //$type = $_POST['type'];
+    $query = "INSERT INTO monster ( name, strength, life, type)
+    VALUES( '".$name."', '".$strength."', '".$life."', '".$type."')";
+    $result = $dbh -> query($query);
+    //$monster = $result -> fetchAll();   
+}
+
+function deleteMonster($number)
+{
+    $monsters = getMonsters();
+    $deletedMonsterName = ($number);
+    //var_dump($deletedMonsterName);
+    $deletedMonster = $monsters[$deletedMonsterName];
+    //var_dump($deletedMonster);
+    $name = $deletedMonster['name'];
+    //var_dump($name);            
+    $dsn = 'mysql:host=localhost;dbname=monsters';
+    $username = 'root';
+    $password = 'newPass';
+    $dbh = new PDO($dsn, $username, $password);	
+    $query = "DELETE FROM monster where name='".$name."'";
+    $result = $dbh -> query($query);
+    //$monster = $result -> fetchAll();
+}
+
 /**
  * Our complex fighting algorithm!
  *

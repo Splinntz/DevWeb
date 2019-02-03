@@ -67,7 +67,7 @@ $monsters = getMonstersObjet();
                 </tbody>
             </table>
             
-            <form method="post">
+            <form method="post" action="addMonster.php">
                 <legend>Add monster </legend>
                 <fieldset>
                 <label for="name" > Name<em>*</em></label> <input type="text" id="name" name="name">	
@@ -78,32 +78,17 @@ $monsters = getMonstersObjet();
                 </fieldset>
             </form>
             
-            <?php
-
-            if ((isset($_POST['name']) && !empty($_POST['name'])) 
-            && (isset($_POST['strength']) && !empty($_POST['strength'])) 
-            && (isset($_POST['life']) && !empty($_POST['life']))
-            && (isset($_POST['type']) && !empty($_POST['type']))) {
-
-                $dsn = 'mysql:host=localhost;dbname=monsters';
-                $username = 'root';
-                $password = 'newPass';
-                $dbh = new PDO($dsn, $username, $password);
-                $name = $_POST['name'];	
-                $strength = $_POST['strength'];
-                $life = $_POST['life'];
-                $type = $_POST['type'];
-                $query = "INSERT INTO monster ( name, strength, life, type)
-                VALUES( '".$name."', '".$strength."', '".$life."', '".$type."')";
-                $result = $dbh -> query($query);
-                $monster = $result -> fetchAll();
-                //echo ("done");
-                header('Location: index.php');
-            }
-            else {
-                //echo "fail";
-            }
-?>
+            <form method="post" action="deleteMonster.php">
+                <h2 class="text-center">Delete Monster</h2>
+                <select class=" form-control" name="deleted_monster">
+                    <option value="">Choose a Monster to delete</option>
+                    <?php foreach ($monsters as $key => $monster) { ?>
+                        <option value="<?php echo $key; ?>"><?php echo $monster->getName(); ?></option>
+                    <?php } ?>
+                </select>
+                <br>
+                <button class="btn btn-md btn-danger center-block" type="submit">Delete !</button>
+            </form>
 
             <div class="row border p-3">
                 <div class="form-group col-md-6 offset-md-3">
