@@ -9,6 +9,6 @@ if ((isset($_POST['name']) && !empty($_POST['name']))
     //echo ("done");
 }
 else {
-        //echo "fail";
-    }
+    //echo "fail";
+}
 ?>
